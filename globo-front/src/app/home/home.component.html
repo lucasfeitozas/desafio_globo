@@ -1,0 +1,65 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Desafio Globo</li>
+  </ol>
+</nav>
+<div class="container">
+   
+
+  <div class="card add-globo">
+      <h5 class="card-header">Gerar combinações disponíveis</h5>
+      <div class="card-body">
+          <form id="add-form" (ngSubmit)="f.form.valid && save(f)" #f="ngForm" novalidate>
+
+            <div class="form-group">
+                <label for="color">Nome completo</label>
+                <input type="text" [(ngModel)]="formDto.nomeCompleto" id="nomeCompleto" name="nomeCompleto" #nomeCompleto="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && nomeCompleto.invalid }" placeholder="Digite o nome completo">
+                <div *ngIf="f.submitted && nomeCompleto.invalid" class="invalid-feedback">
+                    <div *ngIf="nomeCompleto.errors?.required">Nome completo é obrigatória</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-add-nome">Salvar</button>
+            <button type="reset" class="btn btn-secondary btn-add-nome" (click)="cleanForm(f)">Cancelar</button>
+          </form>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="card" >
+          <div class="card-header">
+            Logins disponíveis
+          </div>
+          <ul class="list-group list-group-flush"  *ngFor="let login of desafioResponse.loginsDisponiveis">
+            <li class="list-group-item">{{ login }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card" >
+          <div class="card-header">
+            E-mails disponíveis
+          </div>
+          <ul class="list-group list-group-flush"  *ngFor="let email of desafioResponse.emailsDisponiveis">
+            <li class="list-group-item">{{ email }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card" >
+          <div class="card-header">
+            Display names disponíveis
+          </div>
+          <ul class="list-group list-group-flush"  *ngFor="let name of desafioResponse.displayNames">
+            <li class="list-group-item">{{ name }}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    
+</div>
